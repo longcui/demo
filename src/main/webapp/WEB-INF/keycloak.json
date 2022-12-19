@@ -1,0 +1,8 @@
+{
+  "realm": "Dev-idc",
+  "auth-server-url": "http://localhost:8088",
+  "ssl-required": "external",
+  "resource": "kspice-adapter-auth-code",
+  "public-client": true,
+  "confidential-port": 0
+}
