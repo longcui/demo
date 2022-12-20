@@ -2,15 +2,20 @@
 - bootstrapped from:  [Building a RESTful Web Service
 ](https://spring.io/guides/gs/rest-service/)
 - The controller and POJO class need to be under the same package as the Application class by default, otherwise might need to configure `SpringBootApplication` to have `scanBasePackage`
-- Add keycloak adapter in pom.
-    - Follow `KeycloakWebSecurityConfigurerAdapter`, set `keycloakConfigFileResource` to be `    @Value("${keycloak.configurationFile:WEB-INF/keycloak.json}")
+- [tutorial](https://www.keycloak.org/2017/05/easily-secure-your-spring-boot.html)
+- Method 1:
+    - Add keycloak-spring-boot-starter in pom.
+- Method 2 (having little problem):  
+    - Add spring-boot-starter-security in pom.
+    - Add keycloak-spring-boot-starter in pom?
+    - Follow `KeycloakWebSecurityConfigurerAdapter`, set `keycloakConfigFileResource` to be `    @Value("${keycloak.configurationFile:WEB-INF/keycloak.json}"), this might be the little problem since spring-boot-starter-security still goes to application.properties ...
 `   - The keycloak.json could be downloaded from keycloak. [info.](https://www.springcloud.io/post/2022-02/spring-security-keycloak/#gsc.tab=0)
 
 
 
 ## INFO:
 - `keycloak-spring-boot-starter` depends on spring boot 2.*, so I downgraded this project to 2.7
-- [Keycloak doc v18](https://www.keycloak.org/docs/18.0/securing_apps/index.html#_spring_boot_adapter), I tried the `spring_boot_adapter`, have not gone to step 3, seems bit old fashion. eg: 
+- [Keycloak doc v18](https://www.keycloak.org/docs/18.0/securing_apps/index.html#_spring_boot_adapter), I tried the `spring_boot_adapter`, seems bit old fashion. eg: 
 ```
 keycloak.securityConstraints[0].authRoles[0] = admin
 keycloak.securityConstraints[0].authRoles[1] = user
