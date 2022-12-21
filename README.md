@@ -1,10 +1,33 @@
 ## How to
+- Keycloak is running at: http://localhost:8088
 - bootstrapped from:  [Building a RESTful Web Service
 ](https://spring.io/guides/gs/rest-service/)
 - The controller and POJO class need to be under the same package as the Application class by default, otherwise might need to configure `SpringBootApplication` to have `scanBasePackage`
 - [tutorial](https://www.keycloak.org/2017/05/easily-secure-your-spring-boot.html)
 - Method 1:
     - Add keycloak-spring-boot-starter in pom.
+    - if using OAuth2 "Service Account/Client Credential"
+        - in application.properties:
+        ```python
+        keycloak.realm = Dev-idc
+        keycloak.auth-server-url = http://localhost:8088
+        #keycloak.auth-server-url = https://auth.ops.kognitwin.cn/
+
+
+        keycloak.resource = kspice-adapter-service-account
+
+        keycloak.bearer-only= true
+
+        keycloak.security-constraints[0].authRoles[0]=user
+        keycloak.security-constraints[0].securityCollections[0].patterns[0]=/*
+        ```
+        - Set `Service Account Roles` to contain `user` for client: `Kspice-adapter-service-account `
+        - Set `Authorization Enabled` for client: `Kspice-adapter-service-account ` 
+        - Use Postman OAuth2 to test
+     
+
+
+
 - Method 2 (having little problem):  
     - Add spring-boot-starter-security in pom.
     - Add keycloak-spring-boot-starter in pom?
@@ -16,7 +39,7 @@
 ## INFO:
 - `keycloak-spring-boot-starter` depends on spring boot 2.*, so I downgraded this project to 2.7
 - [Keycloak doc v18](https://www.keycloak.org/docs/18.0/securing_apps/index.html#_spring_boot_adapter), I tried the `spring_boot_adapter`, seems bit old fashion. eg: 
-```
+``` js
 keycloak.securityConstraints[0].authRoles[0] = admin
 keycloak.securityConstraints[0].authRoles[1] = user
 keycloak.securityConstraints[0].securityCollections[0].name = insecure stuff
@@ -35,3 +58,7 @@ I then used the extending `KeycloakWebSecurityConfigurerAdapter` method
 ](https://www.keycloak.org/2022/02/adapter-deprecation)
 
 - [Another way](https://www.baeldung.com/spring-boot-keycloak) with diff dependencies to have keycloak adapter for spring boot
+
+
+
+
