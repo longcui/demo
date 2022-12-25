@@ -34,6 +34,10 @@
     - Follow `KeycloakWebSecurityConfigurerAdapter`, set `keycloakConfigFileResource` to be `    @Value("${keycloak.configurationFile:WEB-INF/keycloak.json}"), this might be the little problem since spring-boot-starter-security still goes to application.properties ...
 `   - The keycloak.json could be downloaded from keycloak. [info.](https://www.springcloud.io/post/2022-02/spring-security-keycloak/#gsc.tab=0)
 
+- Since `spring-boot-maven-plugin` configuration executable is used. this app could be run by `./demo-0.0.1-SNAPTSHOT.jar` instead of `java -jar`
+    - When transferred the file to Ubuntu, the file is in `rw-`, run `chmod +x demo ...` 
+    - Run `nohup demo` to be no hangup app(run in background even after Shell closes)
+
 
 
 ## INFO:
