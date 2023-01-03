@@ -8,7 +8,7 @@
     - Add keycloak-spring-boot-starter in pom.
     - if using OAuth2 "Service Account/Client Credential"
         - in application.properties:
-        ```python
+        ```js
         keycloak.realm = Dev-idc
         keycloak.auth-server-url = http://localhost:8088
         #keycloak.auth-server-url = https://auth.ops.kognitwin.cn/
@@ -36,7 +36,7 @@
 
 - Since `spring-boot-maven-plugin` configuration executable is used. this app could be run by `./demo-0.0.1-SNAPTSHOT.jar` instead of `java -jar`
     - When transferred the file to Ubuntu, the file is in `rw-`, run `chmod +x demo ...` 
-    - Run `nohup demo` to be no hangup app(run in background even after Shell closes)
+    - Run `nohup demo ...` to be no hangup app(run in background even after Shell closes)
 
 
 

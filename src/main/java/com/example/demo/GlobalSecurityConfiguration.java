@@ -62,3 +62,18 @@
 
 
 // }
+
+
+
+
+
+// Currently, there is an issue with Spring Boot Keycloak adapter. But luckily, we have a workaround! Just create a new config class:
+
+// @Configuration
+// public class KeycloakConfig {
+
+//    @Bean
+//    public KeycloakSpringBootConfigResolver keycloakConfigResolver() {
+//        return new KeycloakSpringBootConfigResolver();
+//    }
+// }
